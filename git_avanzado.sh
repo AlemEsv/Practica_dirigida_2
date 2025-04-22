@@ -41,7 +41,8 @@ function mostrar_menu_principal() {
     echo "8) Gestión de git bisect"
     echo "9) Gestión de git diff"
     echo "10) Gestión de Hooks"
-    echo "11) Salir"
+    echo "11) Revisión de archivos modificados"
+    echo "12) Salir"
     echo -n "Seleccione una opción: "
 }
 
@@ -98,7 +99,8 @@ function gestionar_ramas() {
         echo "b) Crear nueva rama y cambiar a ella"
         echo "c) Cambiar a una rama existente"
         echo "d) Borrar una rama"
-        echo "e) Volver al menú principal"
+        echo "e) Renombrar una rama"
+        echo "f) Volver al menú principal"
         echo -n "Seleccione una opción: "
         read opcion_rama
         case "$opcion_rama" in
@@ -125,6 +127,14 @@ function gestionar_ramas() {
                 echo "Rama '$rama' borrada."
                 ;;
             e|E)
+                echo -n "Ingrese el nombre de la rama actual: "
+                read rama_actual
+                echo -n "Ingrese el neuvo nombre para la rama: "
+                read rama
+                git branch -m "$rama_actual" "$rama"
+                echo "Rama '$rama_actual' renombrada a '$rama'"
+                ;;
+            f|F)
                 break
                 ;;
             *)
@@ -261,7 +271,8 @@ function gestionar_diff() {
         echo "a) Mostrar diferencias entre el working tree y el área de staging (git diff)"
         echo "b) Mostrar diferencias entre el área de staging y el último commit (git diff --cached)"
         echo "c) Comparar diferencias entre dos ramas o commits"
-        echo "d) Volver al menú principal"
+        echo "d) Comparar diferencias de un archivo específico"
+        echo "e) Volver al menú principal"
         echo -n "Seleccione una opción: "
         read opcion_diff
         case "$opcion_diff" in
@@ -281,6 +292,15 @@ function gestionar_diff() {
                 git diff "$id1" "$id2"
                 ;;
             d|D)
+                echo -n "Ingrese el primer identificador (rama o commit): "
+                read id1
+                echo -n "Ingrese el segundo identificador (rama o commit): "
+                read id2
+                echo -n "Ingrese la ruta del archivo: "
+                read ruta
+                git diff "$id1" "$id2" -- "$ruta"
+                ;;
+            e|E)
                 break
                 ;;
             *)
@@ -350,6 +370,19 @@ function gestionar_hooks() {
     done
 }
 
+# 11. Revisión de archivos modificados
+function revision_archivos(){
+    files=$(git diff --cached --name-only --diff-filter=ACM | grep'\.c\|\.h\|\.py')
+    for file in files; do
+    # Ejemplo: verificar si existe al menos una línea con comentario ('//')
+    if ! grep -q "//" "$file"; then
+        echo "Error: el archivo '$file' no contiene comentarios de documentación."
+        exit 1
+    fi
+done
+exit 0
+}
+
 # Bucle principal del menú
 while true; do
     mostrar_menu_principal
@@ -386,6 +419,9 @@ while true; do
             gestionar_hooks
             ;;
         11)
+            revision_archivos
+            ;;
+        12)
             echo "Saliendo del script."
             exit 0
             ;;
