@@ -41,8 +41,7 @@ function mostrar_menu_principal() {
     echo "8) Gestión de git bisect"
     echo "9) Gestión de git diff"
     echo "10) Gestión de Hooks"
-    echo "11) Revisión de archivos modificados"
-    echo "12) Salir"
+    echo "11) Salir"
     echo -n "Seleccione una opción: "
 }
 
@@ -319,7 +318,8 @@ function gestionar_hooks() {
         echo "b) Crear/instalar un hook (ej. pre-commit)"
         echo "c) Editar un hook existente"
         echo "d) Borrar un hook"
-        echo "e) Volver al menú principal"
+        echo "e) Crear hook pre-commit de revisión de comentarios"
+        echo "f) Volver al menú principal"
         echo -n "Seleccione una opción: "
         read opcion_hooks
         case "$opcion_hooks" in
@@ -361,6 +361,25 @@ function gestionar_hooks() {
                 fi
                 ;;
             e|E)
+cat << 'EOF' > .git/hooks/pre-commit
+#!/bin/bash
+# Hook pre-commit para verificar documentación en funciones
+
+files=$(git diff --cached --name-only --diff-filter=ACM | grep '\.c\|\.h\|\.py\)')
+for file in $files; do
+    if ! grep -q "#" "$file"; then
+        echo "Error: El archivo '$file' no contiene comentarios de documentación."
+        exit 1
+    fi
+done
+
+exit 0
+EOF
+                chmod +x .git/hooks/pre-commit
+                echo "Se creó el hook pre-commit."
+                ;;
+
+            f|F)
                 break
                 ;;
             *)
@@ -370,18 +389,6 @@ function gestionar_hooks() {
     done
 }
 
-# 11. Revisión de archivos modificados
-function revision_archivos(){
-    files=$(git diff --cached --name-only --diff-filter=ACM | grep'\.c\|\.h\|\.py')
-    for file in files; do
-    # Ejemplo: verificar si existe al menos una línea con comentario ('//')
-    if ! grep -q "//" "$file"; then
-        echo "Error: el archivo '$file' no contiene comentarios de documentación."
-        exit 1
-    fi
-done
-exit 0
-}
 
 # Bucle principal del menú
 while true; do
@@ -419,9 +426,6 @@ while true; do
             gestionar_hooks
             ;;
         11)
-            revision_archivos
-            ;;
-        12)
             echo "Saliendo del script."
             exit 0
             ;;
