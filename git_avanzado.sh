@@ -43,7 +43,8 @@ function mostrar_menu_principal() {
     echo "9) Gestión de git diff"
     echo "10) Gestión de Hooks"
     echo "11) Merge automatizado de una rama"
-    echo "12) Salir"
+    echo "12) Generar reporte de estado del repositorio"
+    echo "13) Salir"
     echo -n "Seleccione una opción: "
 }
 
@@ -399,6 +400,22 @@ function merge_automatizado(){
     echo "Merge completado automáticamente utilizando la estrategia 'theirs'."
 }
 
+# 12. Generar reporte de estado del repositorio
+function generar_reporte(){
+    archivo="reporte.txt"
+    {
+    echo "=== Estado del repositorio ==="
+    git status
+    echo "=== Ramas existentes ==="
+    git branch
+    echo "=== Últimos 5 commits ==="
+    git log -n 5 --oneline
+    echo "=== Lista de stashes ==="
+    git stash list
+    } > "$archivo"
+    echo "Reporte generado en $archivo"
+}
+
 
 # Bucle principal del menú
 while true; do
@@ -438,7 +455,10 @@ while true; do
         11)
             merge_automatizado
             ;;
-        12)
+        12)   
+            generar_reporte
+            ;; 
+        13)
             echo "Saliendo del script."
             exit 0
             ;;

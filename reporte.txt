@@ -1,0 +1,25 @@
+=== Estado del repositorio ===
+On branch master
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   README.md
+	modified:   git_avanzado.sh
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	img/
+	reporte.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+=== Ramas existentes ===
+  feature/authentication
+  feature/prueba1
+* master
+=== Últimos 5 commits ===
+e56df92 Estructura de README.md actualizada
+31b30e8 Merge branch 'feature/authentication'
+5fb8bd0 Cambios hechos en src/main.py añadiendo comentarios
+177bf9a Cambio sin comentario añadido en src/main.py
+02ba000 Añadir hook pre-commit
+=== Lista de stashes ===
