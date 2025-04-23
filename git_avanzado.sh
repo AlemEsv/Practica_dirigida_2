@@ -365,7 +365,7 @@ cat << 'EOF' > .git/hooks/pre-commit
 #!/bin/bash
 # Hook pre-commit para verificar documentación en funciones
 
-files=$(git diff --cached --name-only --diff-filter=ACM | grep '\.c\|\.h\|\.py\)')
+files=$(git diff --cached --name-only --diff-filter=ACM | grep '\.c\|\.h\|\.py')
 for file in $files; do
     if ! grep -q "#" "$file"; then
         echo "Error: El archivo '$file' no contiene comentarios de documentación."
