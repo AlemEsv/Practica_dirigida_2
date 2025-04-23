@@ -13,7 +13,8 @@
 # 8) Gestión de git bisect (iniciar proceso interactivo).
 # 9) Gestión de git diff (ver diferencias entre revisiones o ramas).
 # 10) Gestión de Hooks (listar, crear, editar y borrar hooks).
-# 11) Salir.
+# 11) Merge automatizado de una rama
+# 12) Salir.
 #
 # Requisitos: Se debe ejecutar dentro de un repositorio Git.
 #
@@ -41,7 +42,8 @@ function mostrar_menu_principal() {
     echo "8) Gestión de git bisect"
     echo "9) Gestión de git diff"
     echo "10) Gestión de Hooks"
-    echo "11) Salir"
+    echo "11) Merge automatizado de una rama"
+    echo "12) Salir"
     echo -n "Seleccione una opción: "
 }
 
@@ -389,6 +391,14 @@ EOF
     done
 }
 
+# 11. Merge automatizado de una rama
+function merge_automatizado(){
+    echo "Ingrese el nombre de la rama a fusionar: "
+    read rama
+    git merge -X theirs $rama
+    echo "Merge completado automáticamente utilizando la estrategia 'theirs'."
+}
+
 
 # Bucle principal del menú
 while true; do
@@ -426,6 +436,9 @@ while true; do
             gestionar_hooks
             ;;
         11)
+            merge_automatizado
+            ;;
+        12)
             echo "Saliendo del script."
             exit 0
             ;;
