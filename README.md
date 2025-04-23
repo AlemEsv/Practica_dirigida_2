@@ -1,14 +1,14 @@
 # Actividad
 ## 1. Inicio del script
-![](img1.png)
+![](img/img1.png)
 ## 2. Agregar un submódulo
-![](img2.png)
+![](img/img2.png)
 ## 3. Gestión de ramas
-![](img3.png)
+![](img/img3.png)
 ## 4. Gestión de git diff
-![](img4.png)
+![](img/img4.png)
 ## 5. Gestión de hooks
-![](img5.png)
+![](img/img5.png)
 # Preguntas
 
 ### 1. ¿Qué diferencias observas en el historial del repositorio después de restaurar un commit mediante reflog?
@@ -26,31 +26,31 @@ En un equipo grande, la gestión de ramas puede volverse caótica si no se sigue
 
 ## 1. Funcionalidad para renombrar ramas
 ### Modificar la función de "Gestión de ramas"
-![](img6.png
-)### Implementación:
-![](img7.png
-)### Verificación:
-![](img8.png
-)## 2. Diferencias de un archivo entre 2 commits o ramas
+![](img/img6.png)
+### Implementación:
+![](img/img7.png)
+### Verificación:
+![](img/img8.png)
+## 2. Diferencias de un archivo entre 2 commits o ramas
 ### Creación *main.py* con cambios hechos solo en master:
-![](img9.png
-)### Creación de la función Comparar diferencias de un archivo específico:
-![](img10.png)
+![](img/img9.png)
+### Creación de la función Comparar diferencias de un archivo específico:
+![](img/img10.png)
 ### Validación:
-![](img11.png)
+![](img/img11.png)
 ## 3. Funcionalidad para instalar un hook
 ### Creación del hook *pre-commit*:
-![](img12.png)
+![](img/img12.png)
 ### Integración del hook en *git_avanzado*:
-![](img13.png)
+![](img/img13.png)
 ### Validación:
-![](img14.png)
-![](img15.png)
+![](img/img14.png)
+![](img/img15.png)
 ## 4.  Merge automatizado de una rama
 ### Creación y validación:
-![](img16.png)
+![](img/img16.png)
 ## 5. Reporte con información relevante del repositorio
 ### Creación de la función *generar_reporte*
-![](img17.png)
+![](img/img17.png)
 ### Validación:
-![](img18.png)
+![](img/img18.png)
