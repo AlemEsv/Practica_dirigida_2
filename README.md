@@ -1,4 +1,9 @@
-# Actividad
+# Actividad: Exploración y administración avanzada de Git mediante un script interactivo
+#### Índice
+- [Preguntas](Preguntas)
+- [Ejercicios](Ejercicios)
+
+# Exploración del script interactivo
 ## 1. Inicio del script
 ![](img/img1.png)
 ## 2. Agregar un submódulo
@@ -9,8 +14,8 @@
 ![](img/img4.png)
 ## 5. Gestión de hooks
 ![](img/img5.png)
-# Preguntas
 
+# Preguntas
 ### 1. ¿Qué diferencias observas en el historial del repositorio después de restaurar un commit mediante reflog?
 El comando git reflog permite acceder al historial interno de movimientos de HEAD, incluso aquellos que no están en la línea visible del historial de git log. Cuando restauras un commit desde el reflog, recuperas un estado anterior del repositorio que quizás habías descartado con un reset o rebase. 
 Esto no elimina otros commits, pero puede hacer que tu rama apunte a un punto diferente, lo cual puede desalinear la historia visible en git log.
